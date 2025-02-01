@@ -8,7 +8,7 @@
 *
 ********************************************************************************/
 
-const collegeData = require("./Modules/collegeData"); // Import module
+const collegeData = require("./Modules/collegeData"); // Import module 
 
 // Initialize the data and test the functions
 collegeData.initialize()
