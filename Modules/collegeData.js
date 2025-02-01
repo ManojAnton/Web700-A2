@@ -1,6 +1,6 @@
 const fs = require("fs"); // Import file system module
 
-// Define the Data class as required in the assignment
+
 class Data {
     constructor(students, courses) {
         this.students = students;
