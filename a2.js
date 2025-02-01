@@ -4,30 +4,30 @@
 *  No part of this assignment has been copied manually or electronically from any other source
 *  (including web sites) or distributed to other students.
 * 
-*  Name: Manoj Anton Manorathan Student ID: 146165238 Date: 01/02/2025
+*  Name: Manoj Anton Manorathan Student ID: 146165238 Date:01/02/2025
 *
 ********************************************************************************/
 
-const collegeData = require("./Modules/collegeData"); // Import module 
+const collegeData = require("./modules/collegeData"); // Import data module
 
-// Initialize the data and test the functions
+// Initialize the data and execute retrieval functions sequentially
 collegeData.initialize()
     .then(() => {
         console.log("Data initialization successful.");
 
-        // Get all students
+        // Retrieve and log all students
         return collegeData.getAllStudents();
     })
     .then((students) => {
         console.log(`Successfully retrieved ${students.length} students`);
 
-        // Get all courses
+        // Retrieve and log all courses
         return collegeData.getCourses();
     })
     .then((courses) => {
         console.log(`Successfully retrieved ${courses.length} courses`);
 
-        // Get all TAs
+        // Retrieve and log all TAs
         return collegeData.getTAs();
     })
     .then((tas) => {

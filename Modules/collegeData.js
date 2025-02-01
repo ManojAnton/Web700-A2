@@ -1,6 +1,6 @@
 const fs = require("fs"); // Import file system module
 
-
+// Define the Data class for structured data storage
 class Data {
     constructor(students, courses) {
         this.students = students;
@@ -8,9 +8,9 @@ class Data {
     }
 }
 
-let dataCollection = null; // Store an instance of the Data class
+let dataCollection = null; // Placeholder for the Data instance
 
-// Function to initialize data from JSON files
+// Function to initialize and load data from JSON files
 function initialize() {
     return new Promise((resolve, reject) => {
         fs.readFile("./data/students.json", "utf8", (err, studentData) => {
@@ -25,18 +25,18 @@ function initialize() {
                     return;
                 }
 
-                // Parse JSON data and store in the Data class
+                // Parse and store data in the Data class instance
                 dataCollection = new Data(JSON.parse(studentData), JSON.parse(courseData));
-                resolve(); // Successfully loaded data
+                resolve();
             });
         });
     });
 }
 
-// Function to get all students
+// Function to retrieve all students
 function getAllStudents() {
     return new Promise((resolve, reject) => {
-        if (dataCollection.students.length > 0) {
+        if (dataCollection && dataCollection.students.length > 0) {
             resolve(dataCollection.students);
         } else {
             reject("No results returned");
@@ -44,11 +44,10 @@ function getAllStudents() {
     });
 }
 
-// Function to get only TAs
+// Function to retrieve only Teaching Assistants (TAs)
 function getTAs() {
     return new Promise((resolve, reject) => {
         let tas = dataCollection.students.filter(student => student.TA === true);
-
         if (tas.length > 0) {
             resolve(tas);
         } else {
@@ -57,10 +56,10 @@ function getTAs() {
     });
 }
 
-// Function to get all courses
+// Function to retrieve all courses
 function getCourses() {
     return new Promise((resolve, reject) => {
-        if (dataCollection.courses.length > 0) {
+        if (dataCollection && dataCollection.courses.length > 0) {
             resolve(dataCollection.courses);
         } else {
             reject("No results returned");
@@ -68,7 +67,7 @@ function getCourses() {
     });
 }
 
-// Export functions
+// Export functions for external usage
 module.exports = {
     initialize,
     getAllStudents,
